@@ -53,7 +53,9 @@ area_list = df['area'].unique().tolist()
 df['color']=df['area+cluster']
 df['color'] = df['color'].apply(lambda x: dct_color[x])
 for i in range(len(df['area'].unique())):
-    fig, ax = plt.subplots(figsize=(inch_to_px(1600), inch_to_px(1600)), figsize=(inch_to_px(1600), inch_to_px(1600)))
+    fig, ax = plt.subplots(figsize=(inch_to_px(1600), inch_to_px(1600)))
+    ax.set_xlim(min(df[df['area'].isin([area_list[i]])]['x']) - 1,max(df[df['area'].isin([area_list[i]])]['x'])+1)
+    ax.set_ylim(min(df[df['area'].isin([area_list[i]])]['y']) - 1,max(df[df['area'].isin([area_list[i]])]['y'])+1)
     ax.text(0.5, -0.1, f'Данные по области {area_list[i]}', transform = ax.transAxes)
     ax.set_xlabel("x", fontsize=14, color = 'black')        
     ax.set_ylabel("y", fontsize=14, color = 'black')
