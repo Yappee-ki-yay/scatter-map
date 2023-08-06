@@ -103,6 +103,7 @@ def write_to_gsheet(service_file_path, spreadsheet_id, sheet_name, data_df):
     wks_write.clear('A1',None,'*')
     wks_write.set_dataframe(data_df, (1,1), encoding='utf-8', fit=True)
     wks_write.frozen_rows = 1
+    wks_write.adjust_column_width(start=1, end=7, pixel_size=200)
     wks_write.set_basic_filter()
 
 write_to_gsheet(CREDENTIALS_FILE,spreadsheetId,'Лист №1',result)
